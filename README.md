@@ -16,3 +16,12 @@ Downloads Orange Book Data
 # 檔案更新時間
 每月更新(當月更新上個月資料)
 
+# 支援輸出
+
+- .csv
+- .json (records)
+- .xlsx (Excel)
+- .msgpack
+
+基於 pandas 的檔案格式
+http://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#io-tools-text-csv-hdf5
