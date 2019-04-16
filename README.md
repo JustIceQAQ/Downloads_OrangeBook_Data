@@ -22,6 +22,8 @@ Downloads Orange Book Data
 - .json (records)
 - .xlsx (Excel)
 - .msgpack
+- .feather
+- .parquet
 
 基於 pandas 的檔案格式
 http://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#io-tools-text-csv-hdf5
