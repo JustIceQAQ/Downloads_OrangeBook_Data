@@ -33,18 +33,23 @@ def filetypesSelect(filedf, fileName, filetypesStr, check):
 def change_label_number():
     strLabel = tk.Label(window, text='處理中...')
     strLabel.pack(anchor='center')
+    window.update()
     global url
     global zipfileName
     global comboExample
     comboExampleget = fileTypeListbox.get(fileTypeListbox.curselection())
-    print(comboExampleget)
     urllib.request.urlretrieve(url, zipfileName)
-    print('Downloads Orange Book Data.')
+    strLabel2 = tk.Label(window, text='Downloads Orange Book Data.')
+    strLabel2.pack(anchor='center')
+    window.update()
     with zipfile.ZipFile(zipfileName, 'r') as zipFile:
         products = pd.read_csv(io.StringIO(zipFile.read('products.txt').decode('utf-8')), sep='~', encoding='utf-8')
         patent = pd.read_csv(io.StringIO(zipFile.read('patent.txt').decode('utf-8')), sep='~', encoding='utf-8')
         exclusivity = pd.read_csv(io.StringIO(zipFile.read('exclusivity.txt').decode('utf-8')), sep='~',
                                   encoding='utf-8')
+    strLabel3 = tk.Label(window, text='Downloads Orange Book Data Done.')
+    strLabel3.pack(anchor='center')
+    window.update()
     # 計算三份檔案資料筆數
     OrangeBookDataCounts = ''
     OrangeBookDataCounts += 'products count: {}\n'.format(len(products))
@@ -53,6 +58,9 @@ def change_label_number():
     with open('OrangeBook_DataCounts.txt', 'w', encoding='utf-8') as txt:
         txt.write(OrangeBookDataCounts)
     print('Loading Orange Book Data to {}'.format(comboExampleget))
+    strLabel4 = tk.Label(window, text='Loading Orange Book Data to {}'.format(comboExampleget))
+    strLabel4.pack(anchor='center')
+    window.update()
     try:
         filetypesSelect(products, 'products', comboExampleget, check)
         filetypesSelect(patent, 'patent', comboExampleget, check)
@@ -80,7 +88,7 @@ def change_label_number():
         pass
 
 window = tk.Tk()
-window.title('請選擇輸出檔案格式(Select File Type)')
+window.title('請選擇 Orange Book 輸出檔案格式(Select File Type)')
 window.geometry('400x300')
 try:
     url = 'https://www.fda.gov/downloads/Drugs/InformationOnDrugs/UCM163762.zip'
